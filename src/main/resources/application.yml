@@ -1,0 +1,14 @@
+mp:
+  messaging:
+    outgoing:
+      price-sink:
+        connector: smallrye-kafka
+        topic: price
+        value:
+          serializer: io.quarkus.kafka.client.serialization.ObjectMapperSerializer
+    incoming:
+      price:
+        connector: smallrye-kafka
+        health-readiness-enabled: false
+        value:
+          deserializer: org.acme.PriceDeserializer

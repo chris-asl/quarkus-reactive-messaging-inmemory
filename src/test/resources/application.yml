@@ -1,0 +1,14 @@
+mp:
+  messaging:
+    outgoing:
+      order-sink:
+        connector: smallrye-kafka
+        topic: order
+        value:
+          serializer: io.quarkus.kafka.client.serialization.ObjectMapperSerializer
+    incoming:
+      order:
+        connector: smallrye-kafka
+        health-readiness-enabled: false
+        value:
+          deserializer: org.acme.OrderDeserializer
