@@ -6,7 +6,9 @@ import io.smallrye.reactive.messaging.connectors.InMemoryConnector;
 import io.smallrye.reactive.messaging.connectors.InMemorySink;
 import io.smallrye.reactive.messaging.connectors.InMemorySource;
 import org.assertj.core.api.Assertions;
+import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Message;
+import org.eclipse.microprofile.reactive.messaging.Outgoing;
 import org.junit.jupiter.api.Test;
 
 import javax.enterprise.inject.Any;
@@ -22,6 +24,13 @@ class InMemoryConnectorTest {
     @Inject
     @Any
     InMemoryConnector connector;
+
+    @Incoming("order")
+    @Outgoing("order-sink")
+    Order consume(Order order) {
+        System.out.println("Order received " + order.getFood());
+        return order;
+    }
 
     @Test
     void test() {

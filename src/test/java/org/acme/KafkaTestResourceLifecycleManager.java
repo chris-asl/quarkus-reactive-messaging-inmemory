@@ -18,6 +18,10 @@ public class KafkaTestResourceLifecycleManager implements QuarkusTestResourceLif
         env.putAll(InMemoryConnector.switchIncomingChannelsToInMemory("order"));
         env.putAll(InMemoryConnector.switchOutgoingChannelsToInMemory("order-sink"));
 
+
+        env.putAll(InMemoryConnector.switchIncomingChannelsToInMemory("quarkus-order"));
+        env.putAll(InMemoryConnector.switchOutgoingChannelsToInMemory("quarkus-queue"));
+
         return env;
     }
 
